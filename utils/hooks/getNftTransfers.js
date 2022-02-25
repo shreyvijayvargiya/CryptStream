@@ -8,7 +8,7 @@ export const getNFTTransfers = async() => {
     const { chain } = useChain();
 
     const fetchTokens = async() => {
-        await account.getNFTTransfers({ chain: chain.chainId, address: walletAddress }).then(result => result).catch(error => console.log("error"))    
+        await account.getNFTTransfers({ chain: chain?.chainId, address: walletAddress }).then(result => result).catch(error => console.log("error"))    
     };
 
     useEffect(() => {

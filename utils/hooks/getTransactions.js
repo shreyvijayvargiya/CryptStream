@@ -8,7 +8,7 @@ export const getTransactions = async() => {
     const [transaction, setTransaction] = useState(null);
 
     const fetchTransactions = async() => {
-        await account.getTransactions({ chain: chain.chainId, address: walletAddress }).then(result => {
+        await account.getTransactions({ chain: chain?.chainId, address: walletAddress }).then(result => {
             result.result
         })
         .catch(error => console.log(error, 'error in fetching transactions'))
@@ -16,7 +16,7 @@ export const getTransactions = async() => {
 
     useEffect(async() => {
         fetchTransactions().then(data => setTransaction(data))
-    }, [ chain.chainId, walletAddress  ])
+    }, [ chain?.chainId, walletAddress  ])
 
     return transaction;
 }

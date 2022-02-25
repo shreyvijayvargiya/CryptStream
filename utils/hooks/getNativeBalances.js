@@ -17,7 +17,7 @@ export const getNativeBalances = async() => {
 
     useEffect(async() => {
        fetchBalance();
-    }, [ chain.chainId, walletAddress, fetchBalance ]);
+    }, [ chain?.chainId, walletAddress, fetchBalance ]);
 
     return balances
 }
