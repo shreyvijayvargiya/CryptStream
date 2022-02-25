@@ -31,7 +31,8 @@ const Login = () => {
 
 
     useEffect(() => {
-        if(isAuthenticated && user){
+        if(isAuthenticated){
+            setDisabled(true);
             router.push("/dashboard?type=transfers");
         }
     }, []);
