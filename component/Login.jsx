@@ -1,11 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useMoralis } from 'react-moralis';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import router from 'next/router';
 
 const Login = () => {
-	
+
 
 	const { isAuthenticated, user, authenticate, authError } = useMoralis();
 	const[disabled, setDisabled] = useState(false);
@@ -37,8 +37,10 @@ const Login = () => {
         }
     }, []);
 
+    const styles = useStyles();
+
 	return (
-		<div className="flex justify-center items-center relative flex-col h-screen" style={{ background: 'linear-gradient(90deg, rgba(106, 133, 182, 0.5) 0%, rgba(186, 200, 224, 0.5) 100%)' }}>
+		<div className={styles.root}>
             <div className="text-center p-4">
                 <h2 className="text-2xl font-bold">CrytpStream</h2>
                 <p className="my-2"> All crytpo streams at once place</p>
@@ -54,3 +56,14 @@ const Login = () => {
 	)
 };
 export default Login
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        background: 'linear-gradient(90deg, rgba(106, 133, 182, 0.5) 0%, rgba(186, 200, 224, 0.5) 100%)',
+        height: '90vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
+    },
+}))

@@ -10,10 +10,8 @@ import { SiNetflix } from 'react-icons/si';
 
 const NavbarComponent = () => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-            className="bg-gray-100"
-        >
-            <p className="font-bold text-indigo-800 p-4 underline">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f9fafb' }}>
+            <p style={{ color: 'indigo', textDecoration: "underline", margin: '10px' }}>
                 <a href="/">CryptStream</a>
             </p>
             <div className="flex justify-around items-center gap-2">

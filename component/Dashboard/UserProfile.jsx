@@ -20,7 +20,7 @@ const UserProfile = () => {
     }, []);
 
     return (
-        <div className="flex text-center p-5">
+        <div style={{ display: 'flex', padding: '10px' }}>
             <Avatar src={avatar} className="m-auto text-center" />
             {/* <p><span className="text-xs text-gray-500">{user?.attributes?.username}</span></p>
             <span className="text-xs text-gray-600">{user?.attributes.ethAddress}</span> */}
