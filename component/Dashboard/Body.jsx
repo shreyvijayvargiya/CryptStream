@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { useMoralis, useMoralisQuery } from 'react-moralis';
-import { Avatar } from '@material-ui/core';
-import axios from 'axios';
-import { getERC20Transfers } from '../../utils/hooks/getERC20Transfers';
-import { getERC20Balances } from '../../utils/hooks/getERC20Balances';
-import { getNetworkName } from '../../utils/hooks/getNetworkName';
 import NetworksPage from './Network';
 import TransactionsPage from './TransfersPage';
 import WalletPage from './Wallet';
 import { useRouter } from 'next/router';
-import NavbarComponent from './Navbar';
+import { Card } from '@material-ui/core';
+import TokensPage from './Tokens';
+import NftsPage from './NFTs';
 
 const Body = () => {
     const router = useRouter();
 
     return (
         <div className="p-20 flex justify-center items-center">
-            {router.query.type === "network" && <NetworksPage />}
-            {router.query.type === "balances" && <WalletPage />}
-            {router.query.type === "transfers" && <TransactionsPage />}
+            <Card variant="outlined" style={{ padding: 10, minWidth: '50%', minHeight: '50vh' }}>
+                {router.query.type === "network" && <NetworksPage />}
+                {router.query.type === "balances" && <WalletPage />}
+                {router.query.type === "tokens" && <TokensPage />}
+                {router.query.type === "nfts" && <NftsPage />}
+                {router.query.type === undefined || router.query.type === "transfers" && <TransactionsPage />}
+            </Card>
         </div>
     );
 };

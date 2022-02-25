@@ -5,13 +5,18 @@ export const getTransactions = async() => {
     const { account } = useMoralisWeb3Api();
     const { chain } = useChain();
     const { account: walletAddress } = useMoralis();
-    const [transactions, setTransactions] = useState(null);
+    const [transaction, setTransaction] = useState(null);
+
+    const fetchTransactions = async() => {
+        await account.getTransactions({ chain: chain.chainId, address: walletAddress }).then(result => {
+            result.result
+        })
+        .catch(error => console.log(error, 'error in fetching transactions'))
+    };
 
     useEffect(async() => {
-        await account.getTransactions({ chain: chain.chainId, address: walletAddress }).then(result => {
-            setTransactions(result.result);
-        }).catch(error => console.log(error, 'error'));
+        fetchTransactions().then(data => setTransaction(data))
     }, [ chain.chainId, walletAddress  ])
 
-    return transactions
+    return transaction;
 }

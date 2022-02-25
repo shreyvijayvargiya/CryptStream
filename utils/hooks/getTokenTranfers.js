@@ -10,11 +10,8 @@ export const getTokenTransfers = async() => {
     const fetchTokenTransfers = async() => {
         await account.getTokenTransfers({ chain: chain.chainId, address: walletAddress }).then(result => result).catch(error => console.log(error, 'error'));
     };
-
     useEffect(() => {
         fetchTokenTransfers().then(data => setTokenTransfers(data));
     }, [ chain?.chainId, walletAddress ]);
-
     return tokenTransfers;
-
 }

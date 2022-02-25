@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useChain, useMoralis, useMoralisQuery, useMoralisWeb3Api, useMoralisWeb3ApiCall, useWeb3Transfer } from 'react-moralis';
-import { getTransactions } from '../../utils/hooks/getTransactions';
-import { Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
-import { getERC20Balances } from '../../utils/hooks/getERC20Balances';
+import { Table, TableBody, TableHead, TableRow, TableCell, Button } from '@material-ui/core';
 import { getTokenTransfers } from '../../utils/hooks/getTokenTranfers';
-import { Button } from '@material-ui/core';
-import { getNfts } from '../../utils/hooks/getNft';
 
-const TransactionsPage = () => {
-    const [transactions, setTransactions] = useState({
+const TokensPage = () => {
+
+    const [data, setData] = useState({
         loading: true,
-        data: [],
+        tokenTransfers: '',
     });
-    const transaction = getTransactions();
-
-    const fetchTransactons = () => {
-        transaction.then(data => setTransactions({ loading: false, data })).catch(error => console.log(error))
-    };
+   
+    const tokenTransfers = getTokenTransfers();
 
     useEffect(async() => {
-        fetchTransactons()
+        tokenTransfers.then(data => setData((prevState) => ({ ...prevState, tokenTransfers: data, loading: false }))).catch(error => console.log(error, 'error'));
     }, []);
 
+    const fetchTokenTransfer = () => {
+        tokenTransfers.then(data => setData((prevState) => ({ ...prevState, tokenTransfers: data, loading: false }))).catch(error => console.log(error, 'error'));
+    };
 
+    
     return (
         <div>
-           <h2> Transactions </h2>
-            {transactions.loading ?<p>Fetching transactions...</p>:
-            transactions.data ? <Table sx={{ minWidth: 300 }} aria-label="simple table">
+            <h2> Token Transactions </h2>
+            {data.loading ?<p>Fetching tokens...</p>:
+            data.tokenTransfers ? <Table sx={{ minWidth: 300 }} aria-label="simple table">
                 <TableHead>
                 <TableRow>
                     <TableCell>To Address</TableCell>
@@ -37,9 +34,9 @@ const TransactionsPage = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {transactions?.data?.map((row) => (
+                {data?.data?.map((row) => (
                     <TableRow
-                    key={row.block_hash}
+                    key={row.transaction_hash}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell component="th" scope="row">
@@ -63,10 +60,10 @@ const TransactionsPage = () => {
                     </TableRow>
                 ))}
                 </TableBody>
-            </Table>: <p className="text-xs">No transactions found</p>}
+            </Table>: <p className="text-xs">No token transfers found</p>}
             <br />
-            <Button variant="outlined" color="secondary" style={{ textTransform: 'none'}} onClick={fetchTransactons} size="sm">Fetch Transfers</Button>
+            <Button variant="outlined" color="secondary" style={{ textTransform: 'none'}} onClick={fetchTokenTransfer} size="sm">Fetch Token Transfers</Button>
         </div>
     );
 };
-export default TransactionsPage;
+export default TokensPage;

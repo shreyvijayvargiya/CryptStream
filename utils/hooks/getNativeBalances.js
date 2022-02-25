@@ -9,16 +9,15 @@ export const getNativeBalances = async() => {
     const { chain } = useChain();
 
     const fetchBalance = async() => {
-        account.getNativeBalance({ chain: chain?.chainId, address: walletAddress }).then(result => {
+        await account.getNativeBalance({ chain: chain?.chainId, address: walletAddress }).then(result => { 
             setBalances(result.balance);
-        }).catch(error => {
-            console.log(error, 'error')
-        });
+            return result
+        }).catch(error => console.log(error, 'error'));
     };
 
-    useEffect(() => {
-        fetchBalance()
-    }, [ chain.chainId, walletAddress ]);
+    useEffect(async() => {
+       fetchBalance();
+    }, [ chain.chainId, walletAddress, fetchBalance ]);
 
-    return balances;
+    return balances
 }

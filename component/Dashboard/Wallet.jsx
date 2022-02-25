@@ -1,41 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { useMoralis } from 'react-moralis';
 import { getNativeBalances } from '../../utils/hooks/getNativeBalances';
-import { Card, Divider } from '@material-ui/core';
-import { getTokenBalances  } from '../../utils/hooks/getTokenBalances';
-import { getTokenTransfers } from '../../utils/hooks/getTokenTranfers';
-import { getNfts } from '../../utils/hooks/getNft';
-import { getNFTTransfers } from '../../utils/hooks/getNftTransfers';
+import { Button } from '@material-ui/core';
 
 const WalletPage = () => {
 
-    const [data, setData] = useState({
-        balance: '',
-        tokenBalances: ''
-    });
-    const tokenTransfers = getTokenTransfers();
-    const nativeBalance = getNativeBalances();
-    const tokenBalances = getTokenBalances();
-    const nftsTransfers = getNFTTransfers();
-    const nfts = getNfts();
+    const [data, setData] = useState();
 
-    // nativeBalance.then(data => setData(prevState => ({ ...prevState, balances: data }))).catch(error => console.log(error));
-    // tokenBalances.then(data => setData(prevState => ({ ...prevState, tokenBalances: data }))).catch(error => console.log(error));
+    const balances = getNativeBalances();
+
+    const fetchBalances = () => {
+        balances.then(data => {
+            console.log(data, 'data');
+            setData(data)
+        }).catch(error => console.log(error));
+    };
+
+    useEffect(() => {
+        fetchBalances();
+    }, []);
 
 
     return (
         <div>
             Wallet
-            <Card variant="outlined">
-                <p>Native Balance</p>
-                <Divider />
-                <p>{data.balance}</p>
-            </Card>
-            <Card variant="outlined">
-                <p>Token Balances</p>
-                <Divider />
-                <p>{data.tokenBalances}</p>
-            </Card>
+            <table style={{ border: '1px solid #eeeeee', borderRadius: 9 }}>
+                <tbody>
+                    <tr className="tableRow">
+                        <td style={{ padding: 10, minWidth: '400px' }}>
+                            <p>Native Balances</p>
+                        </td>
+                        <td style={{ padding: 10, textAlign: 'right' }}>
+                            <p>{data}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <Button onClick={fetchBalances} variant="outlined" style={{ textTransform: 'none'}} size="sm">
+                Fetch Native Balance
+            </Button>
         </div>
     );
 };

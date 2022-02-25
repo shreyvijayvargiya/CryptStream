@@ -5,6 +5,8 @@ import { FaNetworkWired } from 'react-icons/fa';
 import { MdAccountBalance } from 'react-icons/md';
 import router from 'next/router';
 import UserProfile from './UserProfile';
+import { RiCoinsLine } from 'react-icons/ri';
+import { SiNetflix } from 'react-icons/si';
 
 const NavbarComponent = () => {
     return (
@@ -30,6 +32,22 @@ const NavbarComponent = () => {
                     style={{ textTransform: 'none', marginTop: 10, marginBottom: 10, border: 'none' }}
                 >
                     Balances
+                </Button>
+                <Button onClick={() => router.push("/dashboard?type=tokens")}
+                    variant="outlined"
+                    color="success"
+                    startIcon={<RiCoinsLine size={18} />}
+                    style={{ textTransform: 'none', marginTop: 10, marginBottom: 10, border: 'none' }}
+                >
+                    Tokens
+                </Button>
+                <Button onClick={() => router.push("/dashboard?type=nfts")}
+                    variant="outlined"
+                    color="success"
+                    startIcon={<SiNetflix size={18} />}
+                    style={{ textTransform: 'none', marginTop: 10, marginBottom: 10, border: 'none' }}
+                >
+                    NFT's
                 </Button>
                 <Button onClick={() => router.push("/dashboard?type=network")}
                     variant="outlined"

@@ -11,7 +11,7 @@ export const getTokenBalances = async() => {
         await account.getTokenBalances({ chain: chain.chainId, address: walletAddress }).then(result => result).catch(error => console.log("error"))    
     };
 
-    useEffect(() => {
+    useEffect(async() => {
         fetchTokens().then(data => setToken(data));
     }, [ walletAddress, chain?.chainId ]);
 
