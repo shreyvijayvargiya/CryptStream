@@ -7,10 +7,9 @@ import { BsRecordCircle } from 'react-icons/bs';
 
 const NetworksPage = () => {
 
-    const { user, web3, enableWeb3, isWeb3Enabled } = useMoralis();
+    const { web3, enableWeb3, isWeb3Enabled } = useMoralis();
     const { switchNetwork, chain } = useChain();
-    const [networkName, setNetworkName] = useState(chain.networkId);
-    const [chainNetwork, setChainNetwork] = React.useState(1);
+    const [chainNetwork, setChainNetwork] = React.useState(chain.networkId);
     const [snackbar, setSnackbar] = useState({ open: false, message: ''});
     const networks = {
         1: "Ethereum Mainnet",
@@ -31,19 +30,14 @@ const NetworksPage = () => {
     };
     
     useEffect(() => {
-        setSnackbar({ open: true, message: `Network changed to ${networks[networkName]}`});
-    }, [ networkName ])
+        setSnackbar({ open: true, message: `Network changed to ${networks[chainNetwork]}`});
+    }, [ chainNetwork ])
 
     // provide the provider to the web3 to enable the swithcing between the networks
     const web3Provider = web3?.setProvider(
         web3?.givenProvider || 'http://localhost:3000'
     );
 
-    // getting the active network chainId and processing the function to get the
-    // web3.eth.net.getId().then(data => {
-    //     const name = getNetworkName(data);
-    //    setNetworkName(name);
-    // }).catch(e => console.log(e, 'e'));
 
    
 
@@ -62,7 +56,7 @@ const NetworksPage = () => {
                 <Card variant="outlined">
                     <p>Current Network</p>
                     <Divider />
-                    <p className="text-xs text-green-600 p-4 flex gap-2 items-center"><BsRecordCircle size={18} />{networks[networkName]}</p>
+                    <p className="text-xs text-green-600 p-4 flex gap-2 items-center"><BsRecordCircle size={18} />{networks[chainNetwork]}</p>
 
                 </Card>
                 <br />
