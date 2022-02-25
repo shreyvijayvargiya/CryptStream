@@ -4,7 +4,6 @@ import { useMoralis } from 'react-moralis';
 import { Button } from '@material-ui/core';
 import router from 'next/router';
 
-
 const Login = () => {
 	
 
@@ -47,7 +46,7 @@ const Login = () => {
                 <Button onClick={login} size="small" color="primary" variant="contained" disabled={disabled}
                     style={{ backgroundColor: 'black', color: 'white', minWidth: '300px' }}
                 >
-                    Connect <img src="/metamaskLogo.svg" className="mx-2 my-2"  /> Wallet
+                    Connect <img src="/metamasklogo.svg" className="mx-2 my-2"  /> Wallet
                 </Button>
             </div>
 		</div>
