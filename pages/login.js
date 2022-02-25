@@ -25,7 +25,8 @@ const LoginPage = () => {
 			<Head>
                 <title>CrytpStream</title>
             </Head>
-			<Login />
+			<p>Home</p>
+			{/* <Login /> */}
 		</div>
 	)
 };
