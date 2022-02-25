@@ -41,10 +41,10 @@ const Login = () => {
 
 	return (
 		<div className={styles.root}>
-            <div className="text-center p-4">
-                <h2 className="text-2xl font-bold">CrytpStream</h2>
-                <p className="my-2"> All crytpo streams at once place</p>
-                <p className="text-xs">Cross Compatible accross blockhain networks</p>
+            <div>
+                <h2 style={{ fontWeight: 'bold', fontSize: 40 }}>CrytpStream</h2>
+                <p> All crytpo streams at once place</p>
+                <p style={{ fontSize: 14 }}>Cross Compatible accross blockhain networks</p>
                 <br />
                 <Button onClick={login} size="small" color="primary" variant="contained" disabled={disabled}
                     style={{ backgroundColor: 'black', color: 'white', minWidth: '300px' }}
@@ -64,6 +64,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        textAlign: 'center'
     },
 }))
