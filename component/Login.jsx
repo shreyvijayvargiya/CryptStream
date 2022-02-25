@@ -60,7 +60,7 @@ export default Login
 const useStyles = makeStyles(theme => ({
     root: {
         background: 'linear-gradient(90deg, rgba(106, 133, 182, 0.5) 0%, rgba(186, 200, 224, 0.5) 100%)',
-        height: '90vh',
+        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
